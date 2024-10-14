@@ -12,10 +12,9 @@ import { mutate } from "swr"
 import { toast } from "sonner"
 import useTransactionsStore from "../store/TransactionsStore"
 
+
 const useSubmitTransactionSWR = () => {
-  const transactiontype = useTransactionsStore(
-    (state) => state.transactionType
-  )
+  const transactiontype = useTransactionsStore((state) => state.transactionType)
   const currentPage = useTransactionsStore((state) => state.currentPage)
 
   const purchaseMutation: MutationFetcher<
@@ -53,24 +52,24 @@ const useSubmitTransactionSWR = () => {
   const { trigger: submitNewPurchase, isMutating: isPurchaseSubmitting } =
     useSWRMutation("createNewPurchase", purchaseMutation, {
       onSuccess: () => {
-        toast("Purchase added successfully")
+        toast.success("PURCHASE added successfully")
         mutate("getLatestTransaction")
         mutate(["getPaginatedTransactions", transactiontype, currentPage])
       },
       onError: (error) => {
-        toast.error("Failed to add purchase")
+        toast.error("Failed to add SALE")
       },
     })
 
   const { trigger: submitNewSale, isMutating: isSaleSubmitting } =
     useSWRMutation("createNewSale", saleMutation, {
       onSuccess: () => {
-        toast("Sale added successfully")
+        toast.success("SALE added successfully")
         mutate("getLatestTransaction")
         mutate(["getPaginatedTransactions", transactiontype, currentPage])
       },
       onError: (error) => {
-        toast.error("Failed to add sale")
+        toast.error("Failed to add PURCHASE")
       },
     })
 
