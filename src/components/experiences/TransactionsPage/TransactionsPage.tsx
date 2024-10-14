@@ -1,6 +1,6 @@
 import useSWR from "swr"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/ui/tabs"
-import { getInventorySummary, getLatestTransaction } from "@root/src/api"
+import { getLatestTransaction } from "@root/src/api"
 import { AddNewTransaction } from "./components/AddNewTransaction"
 
 import { PaginatedTransactionTable } from "./components/PaginatedTransactionTable/PaginatedTransactionTable"

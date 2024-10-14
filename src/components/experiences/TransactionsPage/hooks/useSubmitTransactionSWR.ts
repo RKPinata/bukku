@@ -53,6 +53,7 @@ const useSubmitTransactionSWR = () => {
     useSWRMutation("createNewPurchase", purchaseMutation, {
       onSuccess: () => {
         toast.success("PURCHASE added successfully")
+        mutate('getInventorySummary')
         mutate("getLatestTransaction")
         mutate(["getPaginatedTransactions", transactiontype, currentPage])
       },
@@ -65,6 +66,7 @@ const useSubmitTransactionSWR = () => {
     useSWRMutation("createNewSale", saleMutation, {
       onSuccess: () => {
         toast.success("SALE added successfully")
+        mutate('getInventorySummary')
         mutate("getLatestTransaction")
         mutate(["getPaginatedTransactions", transactiontype, currentPage])
       },
