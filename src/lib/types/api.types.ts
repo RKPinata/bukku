@@ -1,5 +1,7 @@
 import type { PostgrestError } from "@supabase/supabase-js"
 import type { Database } from "./supabase.types"
+import { CreateTransactionPayloadSchema } from "@lib/validation/transactions.schema"
+import { z } from "zod"
 
 export type ApiResponse<T> = {
   data: T | null
@@ -16,13 +18,11 @@ export type PaginatedResponse<T> = {
   error: ApiError
 }
 
-export type ApiError = Error | PostgrestError | null 
+export type ApiError = Error | PostgrestError | null
 
-export type CreateTransactionPayload = {
-  date: string
-  quantity: number
-  unitPrice: number
-}
+export type CreateTransactionPayload = z.infer<
+  typeof CreateTransactionPayloadSchema
+>
 
 export type Transaction<T extends "purchase" | "sale"> = {
   id: number

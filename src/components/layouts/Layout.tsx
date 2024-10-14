@@ -9,7 +9,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {/* meta tags */}
       </Head>
       <div className="relative flex flex-col min-h-screen antialiased font-sans ">
-        <main className="relative flex flex-col flex-grow text-foreground max-w-screen-xl px-36
+        <main className="relative flex flex-col flex-grow text-foreground max-w-screen-xl px-36 py-16
         ">
           {children}
         </main>

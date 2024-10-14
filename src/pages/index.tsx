@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import { Layout } from "@components/Layout"
+import { Layout } from "@components/layouts/Layout"
 import { TransactionsPage } from "@components/experiences/TransactionsPage"
 
 const Home: NextPage = () => {

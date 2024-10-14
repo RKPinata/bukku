@@ -66,7 +66,7 @@ const getPaginatedTransactions = async (
   transactionType: "sale" | "purchase",
   page: number
 ): Promise<PaginatedResponse<Sale | Purchase>> => {
-  const pageSize = 20
+  const pageSize = 10
   const from = (page - 1) * pageSize
   const to = from + pageSize - 1
 
@@ -124,7 +124,7 @@ const getPaginatedTransactions = async (
  * - If a transaction already exists on a date, the db will throw exception (unique constrain)
  */
 const createNewPurchase = async (
-  createPurchaseDTO: CreateTransactionPayload
+  createPurchasePayload: CreateTransactionPayload
 ): Promise<ApiResponse<Purchase>> => {
   try {
     const inventorySummaryRes = await getInventorySummary()
@@ -138,7 +138,7 @@ const createNewPurchase = async (
       total_value: currentTotalValue,
     } = inventorySummaryRes.data
 
-    const { date, quantity, unitPrice } = createPurchaseDTO
+    const { date, quantity, unitPrice } = createPurchasePayload
 
     const newWac = calculateNewWAC({
       currentTotalQuantity,
