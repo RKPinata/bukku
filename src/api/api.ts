@@ -208,7 +208,7 @@ const createNewSale = async (
     const newTotalValue = currentTotalValue - quantity * unitPrice
 
     if (newTotalQuantity < 0) {
-      throw new Error("Insufficient quantity in inventory")
+      throw Error("Insufficient quantity in inventory")
     }
 
     const { data, error } = await supabase

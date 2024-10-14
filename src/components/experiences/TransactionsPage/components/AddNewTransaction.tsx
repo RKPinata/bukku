@@ -28,7 +28,7 @@ import { LoadingSpinner } from "@root/src/components/ui/spinner"
 
 type AddNewTransactionProps = {
   transactionType: "purchase" | "sale"
-  latestTransactionDate: Date | undefined
+  latestTransactionDate: Date | null
   isLoading: boolean
 }
 
@@ -191,7 +191,11 @@ const AddNewTransaction: React.FC<AddNewTransactionProps> = ({
                               field.onChange(formattedDate)
                             }
                           }}
-                          // disabled={(date) => date < latestTransactionDate}
+                          disabled={(date) =>
+                            latestTransactionDate === null
+                              ? false
+                              : date < latestTransactionDate
+                          }
                           initialFocus
                         />
                       </PopoverContent>
