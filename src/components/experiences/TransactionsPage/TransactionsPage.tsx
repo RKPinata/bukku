@@ -26,7 +26,7 @@ const TransactionsPage: React.FC = () => {
 
   const latestTransaction = latestTransactionRes?.data?.date
     ? new Date(latestTransactionRes.data.date)
-    : undefined
+    : new Date()
 
   if (isLatestTransactionLoading) {
     return <div>Loading...</div>

@@ -81,7 +81,7 @@ const AddNewTransaction: React.FC<AddNewTransactionProps> = ({
   return (
     <Dialog>
       <DialogTrigger asChild disabled={isSubmitting || isLoading}>
-        <Button variant={'outline'} size={"sm"}>
+        <Button variant={"outline"} size={"sm"}>
           {isSubmitting || isLoading ? <LoadingSpinner /> : buttonText}
         </Button>
       </DialogTrigger>
@@ -179,23 +179,21 @@ const AddNewTransaction: React.FC<AddNewTransactionProps> = ({
                         </FormControl>
                       </PopoverTrigger>
                       <PopoverContent className="w-auto p-0" align="start">
-                        {isLoading || !latestTransactionDate ? null : (
-                          <Calendar
-                            mode="single"
-                            selected={dateValue ? dateValue : undefined}
-                            onSelect={(selectedDate) => {
-                              if (selectedDate) {
-                                const formattedDate = format(
-                                  selectedDate,
-                                  "yyyy-MM-dd"
-                                )
-                                field.onChange(formattedDate)
-                              }
-                            }}
-                            disabled={(date) => date < latestTransactionDate}
-                            initialFocus
-                          />
-                        )}
+                        <Calendar
+                          mode="single"
+                          selected={dateValue ? dateValue : undefined}
+                          onSelect={(selectedDate) => {
+                            if (selectedDate) {
+                              const formattedDate = format(
+                                selectedDate,
+                                "yyyy-MM-dd"
+                              )
+                              field.onChange(formattedDate)
+                            }
+                          }}
+                          // disabled={(date) => date < latestTransactionDate}
+                          initialFocus
+                        />
                       </PopoverContent>
                     </Popover>
                     <FormMessage />

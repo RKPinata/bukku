@@ -43,10 +43,15 @@ const getLatestTransaction = async (): Promise<
     // Call the Supabase RPC function to get the latest transaction
     const { data, error } = await supabase
       .rpc("get_latest_transaction")
-      .single()
+      .maybeSingle()
 
-    if (error || !data) {
+    if (error) {
       throw error
+    }
+
+    if (!data) {
+      // No data found
+      return { data: null, error: null }
     }
 
     if (data.transaction_type === "purchase") {
