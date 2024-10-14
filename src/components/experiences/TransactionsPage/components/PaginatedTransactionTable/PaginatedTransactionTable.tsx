@@ -1,9 +1,8 @@
+import { Button } from "@components/ui/button"
 import { columns } from "./columns"
 import { DataTable } from "./DataTable"
 import useGetPaginatedTransactionsSWR from "../../hooks/useGetPaginatedTransactionsSWR"
 import useTransactionsStore from "../../store/TransactionsStore"
-import { Button } from "@root/src/components/ui/button"
-
 
 type AddNewTransactionProps = {
   transactionType: "purchase" | "sale"
@@ -29,7 +28,7 @@ const PaginatedTransactionTable: React.FC<AddNewTransactionProps> = ({
   return (
     <div>
       <DataTable columns={columns} data={transactions || []}></DataTable>
-      <div className="flex items-center justify-center mt-4">
+      <div className="flex items-center justify-between mt-4">
         <Button
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={disablePrev}

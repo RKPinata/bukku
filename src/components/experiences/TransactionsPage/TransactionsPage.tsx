@@ -1,13 +1,19 @@
 import useSWR from "swr"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/ui/tabs"
-import { getLatestTransaction } from "@root/src/api"
+import { getInventorySummary, getLatestTransaction } from "@root/src/api"
 import { AddNewTransaction } from "./components/AddNewTransaction"
+
 import { PaginatedTransactionTable } from "./components/PaginatedTransactionTable/PaginatedTransactionTable"
 import useTransactionsStore from "./store/TransactionsStore"
+import InventorySummary from "./components/InventorySummary"
 
 const TransactionsPage: React.FC = () => {
-  const transactiontypes = useTransactionsStore((state) => state.transactionType)
-  const setTransactionType = useTransactionsStore((state) => state.setTransactionType)
+  const transactiontypes = useTransactionsStore(
+    (state) => state.transactionType
+  )
+  const setTransactionType = useTransactionsStore(
+    (state) => state.setTransactionType
+  )
 
   const {
     data: latestTransactionRes,
@@ -27,7 +33,8 @@ const TransactionsPage: React.FC = () => {
   }
 
   return (
-    <>
+    <div className="flex flex-col gap-3">
+      <InventorySummary />
       <div className="flex items-center justify-between">
         <Tabs
           value={transactiontypes}
@@ -50,7 +57,7 @@ const TransactionsPage: React.FC = () => {
         />
       </div>
       <PaginatedTransactionTable transactionType={transactiontypes} />
-    </>
+    </div>
   )
 }
 
