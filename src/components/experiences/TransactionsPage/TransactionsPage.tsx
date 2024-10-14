@@ -33,7 +33,7 @@ const TransactionsPage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 flex-grow">
       <InventorySummary />
       <div className="flex items-center justify-between">
         <Tabs

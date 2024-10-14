@@ -9,14 +9,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <title>Cost Tracker</title>
         {/* meta tags */}
       </Head>
-      <div className="relative flex flex-col min-h-screen antialiased font-sans ">
+      <div className="relative flex flex-col min-h-screen antialiased font-sans items-center">
         <main
-          className="relative flex flex-col flex-grow text-foreground max-w-screen-xl px-36 py-16
+          className="relative flex flex-col flex-grow text-foreground px-36 py-16 max-w-screen-xl
         "
         >
           {children}
         </main>
-        <Toaster richColors theme="light"/>
+        <Toaster richColors theme="light" />
       </div>
     </>
   )
