@@ -198,6 +198,7 @@ const createNewSale = async (
     }
 
     const {
+      current_wac,
       total_quantity: currentTotalQuantity,
       total_value: currentTotalValue,
     } = inventorySummaryRes.data
@@ -205,7 +206,7 @@ const createNewSale = async (
     const { date, quantity, unitPrice } = createSalePayload
 
     const newTotalQuantity = currentTotalQuantity - quantity
-    const newTotalValue = currentTotalValue - quantity * unitPrice
+    const newTotalValue = currentTotalValue - quantity * current_wac
 
     if (newTotalQuantity < 0) {
       throw Error("Insufficient quantity in inventory")
