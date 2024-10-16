@@ -8,12 +8,12 @@ import useTransactionsStore from "./store/TransactionsStore"
 import InventorySummary from "./components/InventorySummary"
 
 const TransactionsPage: React.FC = () => {
-  const transactiontypes = useTransactionsStore(
-    (state) => state.transactionType
-  )
-  const setTransactionType = useTransactionsStore(
-    (state) => state.setTransactionType
-  )
+  const { transactionType, setTransactionType } = {
+    transactionType: useTransactionsStore((state) => state.transactionType),
+    setTransactionType: useTransactionsStore(
+      (state) => state.setTransactionType
+    ),
+  }
 
   const {
     data: latestTransactionRes,
@@ -37,10 +37,10 @@ const TransactionsPage: React.FC = () => {
       <InventorySummary />
       <div className="flex items-center justify-between">
         <Tabs
-          value={transactiontypes}
-          onValueChange={(value) =>
+          value={transactionType}
+          onValueChange={(value) => {
             setTransactionType(value as "purchase" | "sale")
-          }
+          }}
           className="flex"
         >
           <TabsList>
@@ -51,12 +51,12 @@ const TransactionsPage: React.FC = () => {
           <TabsContent value="sale"></TabsContent>
         </Tabs>
         <AddNewTransaction
-          transactionType={transactiontypes}
+          transactionType={transactionType}
           latestTransactionDate={latestTransaction}
           isLoading={isLatestTransactionValidating}
         />
       </div>
-      <PaginatedTransactionTable transactionType={transactiontypes} />
+      <PaginatedTransactionTable transactionType={transactionType} />
     </div>
   )
 }
